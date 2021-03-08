@@ -6,8 +6,8 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 2
+      maxSurge: "50%"
+      maxUnavailable: "50%"
   replicas: 10
   selector:
     matchLabels:
@@ -23,7 +23,7 @@ spec:
     spec:            
       containers:
       - name: api        
-        image: fabricioveronez/api-produto
+        image: ademarbarretp/api-produto
         ports:
         - containerPort: 8080        
         env:
