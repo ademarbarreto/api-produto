@@ -8,7 +8,7 @@ spec:
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 2
-  replicas: 20
+  replicas: 10
   selector:
     matchLabels:
       app: api
