@@ -4,28 +4,20 @@ metadata:
   name: api-deployment
 spec:
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 2
   replicas: 10
   selector:
     matchLabels:
       app: api
   template: 
-    metadata:  
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/path: /metrics
-        prometheus.io/port: "8080"              
+    metadata:
       labels:
         app: api
     spec:            
       containers:
       - name: api        
-        image: ademarbarretp/api-produto
+        image: ademarbarretp/api-bootcamp-produto:v2
         ports:
         - containerPort: 8080        
         env:
           - name: MONGODB_URI
-            value: mongodb://mongodbuser:mongodbpwd@mongo-service:27017/admin
+            value: mongodb://mongouser:mongopwd@mongodb-service:27017/admin
