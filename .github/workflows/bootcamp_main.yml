@@ -49,7 +49,7 @@ jobs:
           # Push is a shorthand for --output=type=registry
           push: true
           # List of tags
-          tags: ademarbarretp/api-bootcamp-produto:latest
-                ademarbarretp/api-bootcamp-produto:${{github.run_number}}
+          tags: ${{secrets.DOCKERHUB_USER}}/api-bootcamp-produto:latest
+                ${{secrets.DOCKERHUB_USER}}/api-bootcamp-produto:${{github.run_number}}
 
 
