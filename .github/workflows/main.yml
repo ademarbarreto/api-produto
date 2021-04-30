@@ -39,8 +39,8 @@ jobs:
           context: ./src
           file: ./src/Dockerfile
           tags: |
-            ademarbarretp/api-produto:latest
-            ademarbarretp/api-produto:${{ github.run_number }}
+            ademarbarretp/api-bootcamp-produto:latest
+            ademarbarretp/api-bootcamp-produto:${{ github.run_number }}
           push: true
   CD:
     needs: [CI]
@@ -50,6 +50,8 @@ jobs:
       - name: Definindo o contexto do Kubernetes
         uses: Azure/k8s-set-context@v1
         with:
+          # Acceptable method: kubeconfig
+          method: kubeconfig
           # Kubernetes Config
           kubeconfig: ${{ secrets.K8S_CONFIG }}
           # If your kubeconfig has multiple contexts, use this field to use a specific context, otherwise the default one would be chosen     
@@ -65,7 +67,7 @@ jobs:
         uses: Azure/k8s-deploy@v1.3
         with:
           # Path to the manifest files which will be used for deployment.
-          images: 'ademarbarretp/api-produto:${{ github.run_number }}'
+          images: 'ademarbarretp/api-bootcamp-produto:${{ github.run_number }}'
           manifests: |
             k8s/api/deployment.yaml
             k8s/api/service.yaml            
